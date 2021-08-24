@@ -1,0 +1,24 @@
+{
+  "name": "Team-Profile-Gen-hw",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adrianauch/Team-Profile-Gen-hw.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adrianauch/Team-Profile-Gen-hw/issues"
+  },
+  "homepage": "https://github.com/adrianauch/Team-Profile-Gen-hw#readme",
+  "dependencies": {
+    "inquirer": "^8.1.2",
+    "jest": "^27.0.6"
+  }
+}

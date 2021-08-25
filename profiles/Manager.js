@@ -1,14 +1,14 @@
 // Require in employee
-const Employee = require("Profiles / Employee.js");
+const Employeefile = require("../profiles/Employee");
 
 // Class for Manager- office number will be added in additon to name, emaill, id
-class Manager extends Employee {
+class Manager extends Employeefile {
   constructor(name, id, email, officeNum) {
     super(name, id, email);
     this.officeNum = officeNum;
   }
 
-  getOfficeNum() {
+  getOfficeNumber() {
     return this.officeNum;
   }
   getRole() {
@@ -17,4 +17,4 @@ class Manager extends Employee {
 }
 
 // export
-module.export = Manager;
+module.exports = Manager;

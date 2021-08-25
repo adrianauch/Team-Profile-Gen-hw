@@ -1,11 +1,11 @@
 // Require in employee
-const Employee = require("Profiles / Employee.js");
+const Employeefile = require("../profiles/Employee");
 
 // Class for Intern- school will be added in additon to name, emaill, id
-class Intern extends Employee {
+class Intern extends Employeefile {
   constructor(name, id, email, school) {
     super(name, id, email);
-    this.school = this.school;
+    this.school = school;
   }
 
   getSchool() {

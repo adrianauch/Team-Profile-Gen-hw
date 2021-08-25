@@ -7,11 +7,11 @@ class Employee {
     this.email = email;
   }
   // Console log to double check constructor:
-  //   employeeInfo() {
-  //     console.log(`name ${this.name}`);
-  //     console.log(`id ${this.id}`);
-  //     console.log(`email ${this.email}`);
-  //   }
+  // employeeInfo() {
+  //   console.log(`name ${this.name}`);
+  //   console.log(`id ${this.id}`);
+  //   console.log(`email ${this.email}`);
+  // }
   // user input for  employee name
   getName() {
     return this.name;

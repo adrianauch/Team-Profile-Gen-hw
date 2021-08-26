@@ -23,6 +23,10 @@ Steps:
 The final Product should look like this:
 ![team generator with cards](assets/images/examp.png)
 
+## License
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 ## Credits
 
 I would like to thank my Tutor Lawrence for helping me work through my homework and some of its challenges. Additonally, the application utilized font awesome, google fonts and bootstrap.

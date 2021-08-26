@@ -12,6 +12,15 @@ In order to use this application the user must have a terminal or git bash. The 
 
 Please watch the following video demonstration:
 
+
+https://user-images.githubusercontent.com/87041736/130884233-66ef6d0a-4970-46a6-94dd-e39e60f6c2ac.mov
+
+
+
+https://user-images.githubusercontent.com/87041736/130884330-84a4b47b-6ef0-4e4a-bc3b-1a2820069933.mov
+
+
+
 Steps:
 
 1. run node index.js

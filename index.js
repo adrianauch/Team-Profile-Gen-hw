@@ -1,7 +1,8 @@
-// HTML Generator:
-const HTML = require("./src/Team-Generator");
+// Main HTML for code
+// HTML Generator require:
+const generateHTML = require("./src/Team-Generator");
 
-// node modules
+// node modules:
 const fs = require("fs");
 var inquirer = require("inquirer");
 
@@ -11,133 +12,138 @@ const Engineer = require("./profiles/Engineer");
 const Intern = require("./profiles/Intern");
 const Employee = require("./profiles/Employee");
 
-// empty Array for team
+// empty Array for user input about team.
 const teamMembers = [];
 
-// //command line prompts
+// //command line prompts:
 
-// Manager Prompts
+// start of manager prompts
 const addManager = () => {
   return inquirer
     .prompt([
       {
         type: "input",
-        message: "Who is the Manager of this team?",
         name: "name",
+        message: "Who is the manager of this team?",
       },
       {
         type: "input",
-        message: "Please enter the Manager's ID.",
         name: "id",
+        message: "Please enter the manager's ID.",
       },
       {
         type: "input",
-        message: "What is the Manager's email?",
         name: "email",
+        message: "Please enter the manager's email.",
       },
       {
         type: "input",
-        message: "Please enter the Manger's office number.",
-        name: "officeNum",
+        name: "officeNumber",
+        message: "Please enter the manager's office number",
       },
     ])
     .then((managerInput) => {
-      const { name, id, email, officeNumber } = managerInput;
-      const manager = new Manager(name, id, email, officeNumber);
-
+      const { name, id, email, officeNum } = managerInput;
+      const manager = new Manager(name, id, email, officeNum);
+      // push  data to array
       teamMembers.push(manager);
       console.log(manager);
     });
 };
 
-//Adding Employee
 const addEmployee = () => {
   return inquirer
     .prompt([
       {
         type: "list",
-        message: "Please select the employees role:",
-        choices: ["Engineer", "Intern"],
         name: "role",
+        message: "Please choose your employee's role",
+        choices: ["Engineer", "Intern"],
       },
       {
         type: "input",
-        message: "Please enter the name of the employee.",
         name: "name",
+        message: "What's the name of the employee?",
       },
       {
         type: "input",
-        message: "What is the employee's email?",
-        name: "email",
-      },
-      {
-        type: "input",
-        message: "Please enter the employes ID Number.",
         name: "id",
+        message: "Please enter the employee's ID.",
       },
       {
-        // Question should only populate when user selects engineer as the employee role.
-
         type: "input",
-        message: "Please enter the employee's github username.",
+        name: "email",
+        message: "Please enter the employee's email.",
+      },
+      {
+        type: "input",
         name: "github",
+        message: "Please enter the employee's github username.",
         when: (input) => input.role === "Engineer",
       },
       {
-        // Question should only populate when user selects intern as the employee role.
         type: "input",
-        message: "Please enter in the interns current school.",
         name: "school",
+        message: "Please enter the intern's school",
         when: (input) => input.role === "Intern",
       },
       {
-        type: "choice",
-        message: "would you like to add anymore team memebers?",
-        name: "additionalEmployee",
+        type: "confirm",
+        name: "confirmAddEmployee",
+        message: "Would you like to add more team members?",
+        default: false,
       },
     ])
     .then((employeeData) => {
-      let { name, id, email, role, github, school, additionalEmployee } =
+      // data for employee types
+
+      let { name, id, email, role, github, school, confirmAddEmployee } =
         employeeData;
       let employee;
+
       if (role === "Engineer") {
-        // pass agurments for engineer
         employee = new Engineer(name, id, email, github);
+
         console.log(employee);
       } else if (role === "Intern") {
         employee = new Intern(name, id, email, school);
+
         console.log(employee);
       }
+      // push data to array
       teamMembers.push(employee);
-      console.log(employeeData.additionalEmployee);
-      if (employeeData.additionalEmployee === "yes") {
+
+      if (confirmAddEmployee) {
         return addEmployee(teamMembers);
       } else {
-        console.log("Thank you for your input");
+        return teamMembers;
       }
     });
 };
 
-// generate HTML Page - review last HW
+// function to generate HTML page file using file system
 const writeFile = (data) => {
-  fs.writeFile("./src/index.html", data, (err) => {
+  fs.writeFile("./html/index.html", data, (err) => {
+    // if there is an error it will console log
     if (err) {
       console.log(err);
+      return;
+      // when html has been created
     } else {
       console.log(
-        "Success! Your team profile has been generated. Please look for the index.html file in the src folder."
+        "Success! Your Team has been created plese go to the html folder to view your index.html"
       );
     }
   });
 };
-
+// run functions.
 addManager()
   .then(addEmployee)
   .then((teamMembers) => {
     return generateHTML(teamMembers);
   })
-  .then((HTML) => {
-    return fs.writeFile(HTML);
+  .then((pageHTML) => {
+    return writeFile(pageHTML);
   })
   .catch((err) => {
     console.log(err);

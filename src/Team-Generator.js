@@ -1,5 +1,4 @@
 // Where we create the cards for the HTML
-// create Manager card
 const generateManager = function (manager) {
   return `
     <div class="col-4 mt-4">
@@ -11,7 +10,7 @@ const generateManager = function (manager) {
             <div class="card-body">
                 <p class="id">ID: ${manager.id}</p>
                 <p class="email">Email: <a href="mailto:${manager.email}">${manager.email}</a></p>
-                <p class="office">Office Number: ${manager.officeNumber}</p>
+                <p class="office">Office Number: ${manager.officeNum}</p>
             </div>
         </div>
     </div>
@@ -55,69 +54,80 @@ const generateIntern = function (intern) {
 </div>
     `;
 };
-// function to create page based off of what form was filled out.
+
+// push array to page
 generateHTML = (data) => {
-  const employeeCards = [];
+  // array for cards
+  TeamArray = [];
+
   for (let i = 0; i < data.length; i++) {
     const employee = data[i];
     const role = employee.getRole();
 
-    // manager function
+    // call manager function
     if (role === "Manager") {
       const managerCard = generateManager(employee);
-      employeeCards.push(managerCard);
+
+      TeamArray.push(managerCard);
     }
-    // if there is an engineer calls function
+
+    // call engineer function
     if (role === "Engineer") {
       const engineerCard = generateEngineer(employee);
-      employeeCards.push(engineerCard);
+
+      TeamArray.push(engineerCard);
     }
-    // Intern card
+
+    // call intern function
     if (role === "Intern") {
       const internCard = generateIntern(employee);
-      employeeCards.push(internCard);
+
+      TeamArray.push(internCard);
     }
   }
-  //   joining strings
-  const teamCards = employeeCards.join("");
-  const generateTeam = generateTeamPg(teamCards);
+
+  // joining strings
+  const employeeCards = TeamArray.join("");
+
+  // return to generated page
+  const generateTeam = generateTeamPage(employeeCards);
   return generateTeam;
 };
-const genterateTeampg = function (teamCards) {
-  return `<!DOCTYPE html>
-    <html lang="en">
-      <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
-          rel="stylesheet"
-          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
-          crossorigin="anonymous"
-        />
-        <title>Team Profile Generator</title>
-      </head>
-      <body>
-        <header>
+
+// generate html page
+const generateTeamPage = function (employeeCards) {
+  return `
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Team Profile</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+      <header>
           <nav class="navbar" id="navbar">
-            <span class="navbar-brand mb-0 h1 w-100 text-center" id="navbar-text"
-              >Team Profile</span
-            >
+              <span class="navbar-brand mb-0 h1 w-100 text-center" id="navbar-text">Team Profile</span>
           </nav>
-        </header>
-        <main>
+      </header>
+      <main>
           <div class="container">
-            <div class="row justify-content-center" id="team-cards">
-              <!--Team Cards-->
-              ${teamCards}
-            </div>
+              <div class="row justify-content-center" id="team-cards">
+                  <!--Team Cards-->
+                  ${employeeCards}
+              </div>
           </div>
-        </main>
-      </body>
-    </html>
-     `;
+      </main>
+      
+  </body>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  </html>
+`;
 };
 
-// export
+// export to index
 module.exports = generateHTML;

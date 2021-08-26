@@ -7,19 +7,15 @@ This command line application was generated to help a user create a quick refere
 ## Installation
 
 In order to use this application the user must have a terminal or git bash. The Code is currently running in VS code so that is recommended. Addtionally, the user will have to install npm and npm inquirer to be able to execute the command line code.
+link to deployed page: https://adrianauch.github.io/Team-Profile-Gen-hw/
 
 ## Usage
 
 Please watch the following video demonstration:
 
-
 https://user-images.githubusercontent.com/87041736/130884233-66ef6d0a-4970-46a6-94dd-e39e60f6c2ac.mov
 
-
-
 https://user-images.githubusercontent.com/87041736/130884330-84a4b47b-6ef0-4e4a-bc3b-1a2820069933.mov
-
-
 
 Steps:
 
